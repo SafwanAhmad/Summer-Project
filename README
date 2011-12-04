@@ -1,0 +1,31 @@
+<ABOUT>
+I wrote this simulator  for my summer project to simulate PIC10F devices PIC10F 200,202,204,206. It does not support timers and comparators at this moment. 
+</ABOUT>
+
+<Requirements>
+To build the simulator you will need gtk 3.0 to be installed on your system.
+To process your assembly input you will need the gputils package.
+</Requirements>
+
+<Building the simulator>
+Run automake.sh to build the simulator.It generates a single binary 'simulator-gui'. This file is configured to generate the simulator for PIC10F200. You can edit the -DPIC10F200 flag defined in this file to build the simulator for any ofthe device families listed above.
+<Building the simulator>
+
+
+<Generating simulation code>
+
+Once the simulator binary is ready you will need assembly code that is to be executed on the simulator.
+
+Stepwise procedure for genarating this file follows:
+1. Save your assembly code as <filename>.picasm
+2. Run the shell script with your assembly file's name as a parameter.
+   ROMEXTRACT.sh <filename> (without the extension '.picasm'). It will generate the file INPUT.                     
+   You can inspect the shell script in ROMEXTRACT.sh. It generates INPUT in three steps. First gpasm is invoked and         
+   your file name is passed as a parameter to it. gpasm generates, among other things a '.cod' file. The .cod file is  
+   passed to gpvc, and the output is saved to a file named ROM. This file is then processed and relevant information is 
+   saved to the file INPUT.
+
+</Generating simulation code>
+
+Now you can run simulator-gui it simulates each instruction and displays the output in the window.
+
